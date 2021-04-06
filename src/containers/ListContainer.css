@@ -1,0 +1,11 @@
+.ContainerCards{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 10px;
+}
+
+.btn-addCart{
+    margin-top: 10px;
+    
+}

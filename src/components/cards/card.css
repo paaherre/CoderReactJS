@@ -1,0 +1,73 @@
+.card{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.container h2 {
+    font-size: 20px;
+    height: 50px;
+}
+.container p{
+    margin-top: 10px;
+    font-family: inherit;
+    font-size: 16px;
+    color: rgb(17, 0, 255);
+    height: 100px;
+    overflow: auto;
+}
+.container-img{
+    text-align: center;
+}
+
+.img{
+    margin-top: 2rem;
+    overflow: hidden;
+    
+}
+
+.hr{
+    margin-top: 5px;
+    height: 2px;
+    width: 150px;
+    background-color: grey;
+
+}
+
+.btn-addCart{
+    margin-bottom: 20px;
+}
+
+.card:hover{
+    box-shadow: 5px 25px 30px 2px rgba(255, 255, 255 , 0.273);
+    transition: all 0.2s linear;
+}
+
+.card-body{
+    padding: 2rem 0 impo !important;
+}
+
+.card-text{
+    padding: 0.3rem 1rem;
+    font-size: 1rem;
+}
+
+.card-img-top{
+    transition: 0.2s ease-in-out;
+
+}
+
+.card-img-top:hover{
+    transform: scale(1.2);
+}
+
+.tamanio{
+    height: 3rem !important;
+}
+
+.btn-masInfo{
+    margin-bottom: 10px;
+    background-color: white;
+}
+.btn-link{
+    text-decoration: none;
+}
