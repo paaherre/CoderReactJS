@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ItemCount from '../ItemCount/ItemCount';
 import "./ItemDetail.css";
 import Button from 'react-bootstrap/Button'
+import { Link } from 'react-router-dom'
 
 
 
-const ItemDetail = ({ img, title, descripcion, stock }) => {
+
+const ItemDetail = ({ img, title, descripcion, stock, precio }) => {
+    const [count, setCount] = useState(0)
+
+    const addHandler = (cantidad) => {
+        setCount(cantidad)
+    }
 
     return (
         <div className='card bg-dark text-center animate__animated animate__fadeInUp'>
@@ -21,10 +28,12 @@ const ItemDetail = ({ img, title, descripcion, stock }) => {
                         descripcion ? descripcion : 'Descripción del producto, click en mas infomración para ver el detalle'
                     }
                 </p>
-
-                <ItemCount stock={stock} initial='1' />
-                <Button variant="success" className="btn-addCart">Agregar al Carrito</Button>
-                {console.log(img)}
+                <h4>Precio: $ {precio}</h4>
+                {count === 0 ?
+                    <ItemCount stock={stock} initial='1' onAdd={addHandler} />
+                    :
+                    <Link to='/cart'><Button variant="primary">Terminar la compra</Button></Link>
+                }
             </div>
         </div>
     );

@@ -1,5 +1,4 @@
 import React from 'react';
-import ItemCount from '../ItemCount/ItemCount';
 import "./card.css";
 import Button from 'react-bootstrap/Button'
 import { Link } from 'react-router-dom'
@@ -22,8 +21,6 @@ const Card = ({ id, img, title, descripcion, stock }) => {
                     }
                 </p>
                 <Button className="btn-masInfo"><Link className="btn-link" to={`/itemDetail/${id}`}> + Información </Link></Button>
-                <ItemCount stock={stock} initial='1' />
-                <Button variant="success" className="btn-addCart">Agregar al Carrito</Button>
             </div>
         </div>
     );
