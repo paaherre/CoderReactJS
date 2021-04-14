@@ -30,7 +30,7 @@ const ItemDetailContainer = () => {
             <div className="row" >
                 {prod.map((item) => (
                     <div className="col-md-6" key={item.id}>
-                        <ItemDetail precio={item.precio} id={item.id} title={item.nombre} img={item.img} descripcion={item.descripcion} stock={item.stock} />
+                        <ItemDetail item={item} />
                     </div>
                 ))}
             </div>
