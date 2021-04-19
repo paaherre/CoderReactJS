@@ -9,7 +9,7 @@ const ItemCount = ({ stock, initial, onAdd }) => {
     const [unidades] = useState('u')
 
     function decrementCount() {
-        if (count !== 0) {
+        if (count > 1) {
             setCount(prevCount => prevCount - 1)
         }
     }

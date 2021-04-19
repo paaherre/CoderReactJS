@@ -1,5 +1,4 @@
-.App {
-    height: 100%;
+.App {    
     background: rgb(238, 69, 64);
     background: linear-gradient(
         180deg,
@@ -10,4 +9,5 @@
         rgba(45, 20, 44, 1) 100%
 
     );
+    background-size: 100%;
 }
