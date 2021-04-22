@@ -1,38 +1,37 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import ItemDetail from '../components/itemDetail/ItemDetail'
-import item from '../components/item/item'
+import { getFirestore } from '../firebase'
 
+const getItems = (id) => {
+
+    const db = getFirestore();
+    const itemsCollection = db.collection('productos');
+    const prod = itemsCollection.doc(id)
+
+    return prod.get();
+}
 
 const ItemDetailContainer = () => {
     const [prod, setProd] = useState([])
     const { itemId } = useParams()
 
     useEffect(() => {
-        const promise = new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve(item)
-            }, 2000);
+        getItems(itemId).then((res) => {
+            if (res.exists) {
+                setProd(res.data())
+            }
         })
-
-        promise.then((producto) => {
-            return (
-
-                setProd(producto.filter((p) => p.id === itemId))
-
-            )
-        });
-
+        return;
     }, [itemId])
 
     return (
         <div className="container d-flex justify-content-center align-items-center h-100">
             <div className="row" >
-                {prod.map((item) => (
-                    <div className="col-md-6" key={item.id}>
-                        <ItemDetail item={item} />
-                    </div>
-                ))}
+                <div className="col-md-6" key={prod.id}>
+                    <ItemDetail item={prod} />
+                </div>
+
             </div>
         </div>
     );

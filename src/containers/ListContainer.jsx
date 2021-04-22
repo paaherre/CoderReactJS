@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Card from "../components/cards/card";
-import item from "../components/item/item";
 import "./ListContainer.css";
 import PropTypes from 'prop-types';
 import { useParams } from "react-router";
+import { getFirestore } from "../firebase";
+
 
 
 const ListContainer = () => {
@@ -12,24 +13,32 @@ const ListContainer = () => {
 
     useEffect(() => {
 
-        const promesa = new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve(item);
-            }, 2000);
-        })
+        const db = getFirestore();
+        const itemsCollection = db.collection('productos')
 
-        promesa.then((productos) => {
+        if (itemParam) {
+            const filtro = itemsCollection.where('categoria', '==', itemParam)
+            const promFilter = filtro.get();
 
-            if (itemParam) {
-                return (
-                    setItems(productos.filter((p) => p.categoria === itemParam && p.stock > 0))
-                )
-            } else {
-                setItems(productos)
-            }
-
-        });
-
+            promFilter.then((snapshot) => {
+                if (snapshot.size > 0) {
+                    console.log(snapshot.docs)
+                    setItems(snapshot.docs.map(doc => {
+                        return { id: doc.id, ...doc.data() }
+                    }))
+                }
+            })
+        } else {
+            const promise = itemsCollection.get();
+            promise.then((snapshot) => {
+                if (snapshot.size > 0) {
+                    console.log(snapshot.docs)
+                    setItems(snapshot.docs.map(doc => {
+                        return { id: doc.id, ...doc.data() }
+                    }))
+                }
+            })
+        }
     }, [itemParam])
 
     return (
