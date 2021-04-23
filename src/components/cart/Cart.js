@@ -10,7 +10,6 @@ const Cart = () => {
     const { cart, removeItem, clear, totalCant, totalPrec } = useContext(CartContext)
 
 
-
     return (
         <div>
             {

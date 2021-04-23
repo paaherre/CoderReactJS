@@ -22,7 +22,6 @@ const ListContainer = () => {
 
             promFilter.then((snapshot) => {
                 if (snapshot.size > 0) {
-                    console.log(snapshot.docs)
                     setItems(snapshot.docs.map(doc => {
                         return { id: doc.id, ...doc.data() }
                     }))
@@ -32,7 +31,6 @@ const ListContainer = () => {
             const promise = itemsCollection.get();
             promise.then((snapshot) => {
                 if (snapshot.size > 0) {
-                    console.log(snapshot.docs)
                     setItems(snapshot.docs.map(doc => {
                         return { id: doc.id, ...doc.data() }
                     }))

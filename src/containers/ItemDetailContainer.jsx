@@ -19,7 +19,7 @@ const ItemDetailContainer = () => {
     useEffect(() => {
         getItems(itemId).then((res) => {
             if (res.exists) {
-                setProd(res.data())
+                setProd({ id: res.id, ...res.data() })
             }
         })
         return;

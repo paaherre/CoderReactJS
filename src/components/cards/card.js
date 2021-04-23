@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 
 const Card = ({ id, img, title, descripcion, stock }) => {
 
+
     return (
         <div className='card bg-dark text-center animate__animated animate__fadeInUp'>
             <div className='card-body text-light'>

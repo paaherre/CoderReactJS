@@ -23,10 +23,9 @@ export const CartProvider = ({ children }) => {
     }
 
     const addItem = (item, cantidad) => {
-        console.log('add item en cartContext', item.nombre);
+
 
         if (isInCart(item.id)) {
-            console.log("este item ya esta en el carrito");
 
             let newCart = cart.filter(e => e.item.id !== item.id)
             let newCantidad = cart.find(e => e.item.id === item.id).cantidad + cantidad
