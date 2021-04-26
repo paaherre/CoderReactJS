@@ -6,6 +6,23 @@ import Button from 'react-bootstrap/Button'
 import "./Cart.css"
 
 
+const generarOrden = (cart, totalPrec) => {
+    let orden = {}
+
+    orden.buyer = { name: 'juan', phone: 'my phone', email: 'pepe@aol.com.ar' }
+    orden.total = totalPrec
+    orden.items = cart.map(cartItem => {
+        const id = cartItem.item.id;
+        const nombre = cartItem.item.nombre;
+        const precio = cartItem.item.precio * cartItem.cantidad;
+
+        return { id, nombre, precio }
+    })
+
+    console.log(orden);
+}
+
+
 const Cart = () => {
     const { cart, removeItem, clear, totalCant, totalPrec } = useContext(CartContext)
 
@@ -42,6 +59,7 @@ const Cart = () => {
                                 </tr>
                             </tbody>
                         </Table>
+                        <Button variant="success" onClick={() => generarOrden(cart, totalPrec)}>Finalizar Compra</Button>
                     </>
                     )
             }
