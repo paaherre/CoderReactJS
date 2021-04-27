@@ -27,9 +27,6 @@ const generarOrden = (cart, totalPrec) => {
 
         return { id, nombre, cantidad, precio }
     })
-
-
-
     ordenCol.add(orden)
         .then((IdDocumento) => {
             console.log(IdDocumento.id)
@@ -41,21 +38,24 @@ const generarOrden = (cart, totalPrec) => {
             console.log('termino la promesa')
         })
 
-    for (const cartItem of cart) {
-        const docRef = db.collection('productos').doc(cartItem.item.id)
+    const itemsToUpdate = db.collection('productos').where(
+        firebase.firestore.FieldPath.documentId(), 'in', cart.map(p => p.item.id)
+    )
 
-        docRef.update({
-            stock: cartItem.item.stock - cartItem.cantidad
+    const batch = db.batch();
+
+    itemsToUpdate.get().then(collection => {
+        collection.docs.forEach(docSnapshot => {
+            batch.update(docSnapshot.ref, {
+                stock: docSnapshot.data().stock - cart.find(item => item.item.id === docSnapshot.id).cantidad
+            })
         })
-    }
 
-    console.log(orden);
+        batch.commit().then()
+    })
 }
-
-
 const Cart = () => {
     const { cart, removeItem, clear, totalCant, totalPrec } = useContext(CartContext)
-
 
     return (
         <div>
@@ -93,10 +93,8 @@ const Cart = () => {
                     </>
                     )
             }
-
         </div>
     )
-
 }
 
 export default Cart;
