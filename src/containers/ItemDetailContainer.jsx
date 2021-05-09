@@ -31,7 +31,6 @@ const ItemDetailContainer = () => {
                 <div className="col-md-6" key={prod.id}>
                     <ItemDetail item={prod} />
                 </div>
-
             </div>
         </div>
     );

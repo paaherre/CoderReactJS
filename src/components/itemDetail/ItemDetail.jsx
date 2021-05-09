@@ -1,21 +1,16 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import ItemCount from '../ItemCount/ItemCount';
 import "./ItemDetail.css";
 import Button from 'react-bootstrap/Button'
 import { Link } from 'react-router-dom'
-import { CartContext } from '../../Context/CartContext';
+
 
 
 const ItemDetail = ({ item }) => {
     const [count, setCount] = useState(0)
-    const { addItem } = useContext(CartContext);
 
     const addHandler = (contador) => {
         setCount(contador)
-    }
-
-    const terminarCompra = () => {
-        addItem(item, count)
     }
 
     return (
@@ -34,10 +29,10 @@ const ItemDetail = ({ item }) => {
                 </p>
                 <h4>Precio: $ {item.precio}</h4>
                 {count === 0 ?
-                    <ItemCount stock={item.stock} initial='1' onAdd={addHandler} />
+                    <ItemCount item={item} stock={item.stock} initial='1' onAdd={addHandler} />
                     :
                     <Link to='/cart'>
-                        <Button variant="primary" onClick={terminarCompra}>Terminar la compra</Button>
+                        <Button variant="primary">Terminar la compra</Button>
                     </Link>
                 }
             </div>

@@ -1,12 +1,15 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import './ItemCount.css';
 import Button from 'react-bootstrap/Button'
+import { CartContext } from "../../Context/CartContext";
 
 
 
-const ItemCount = ({ stock, initial, onAdd }) => {
+const ItemCount = ({ item, stock, initial, onAdd }) => {
     const [count, setCount] = useState(parseInt(initial))
     const [unidades] = useState('u')
+
+    const { addItem } = useContext(CartContext)
 
     function decrementCount() {
         if (count > 1) {
@@ -20,6 +23,11 @@ const ItemCount = ({ stock, initial, onAdd }) => {
         }
     }
 
+    const addItemCart = () => {
+        addItem(item, count)
+        onAdd(count)
+    }
+
     return (
         <div>
             <div>
@@ -28,8 +36,9 @@ const ItemCount = ({ stock, initial, onAdd }) => {
                 <span>  {unidades}  </span>
                 <Button className="btnCards" onClick={incrementCount}>+</Button>
             </div>
-            <Button variant="success" className="btn-addCart" onClick={() => onAdd(count)}>Agregar al Carrito</Button>
-        </div>
+            <Button variant="success" className="btn-addCart" onClick={addItemCart}>Agregar al Carrito</Button>
+
+        </div >
     )
 
 }
