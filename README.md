@@ -28,7 +28,7 @@ Dependencies:
     react-router-dom": 5.2.0,
     react-scripts": 4.0.3,
     web-vitals": 1.1.1
-
+    
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
