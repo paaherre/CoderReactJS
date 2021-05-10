@@ -9,6 +9,8 @@ import firebase from 'firebase/app'
 
 const generarOrden = (cart, totalPrec, datos) => {
 
+
+
     const db = getFirestore();
     const ordenCol = db.collection('ordenes');
 
@@ -31,13 +33,8 @@ const generarOrden = (cart, totalPrec, datos) => {
     })
     ordenCol.add(orden)
         .then((IdDocumento) => {
-            alert(IdDocumento.id)
-        })
-        .catch(err => {
-            console.log(err);
-        })
-        .finally(() => {
-            console.log('termino la promesa')
+            alert("Muchas gracias por su compra, se generó la orden: " + IdDocumento.id)
+
         })
 
     const itemsToUpdate = db.collection('productos').where(
@@ -59,7 +56,8 @@ const generarOrden = (cart, totalPrec, datos) => {
 
 
 const Formulario = (props) => {
-    const { cart, totalPrec } = useContext(CartContext)
+    const [validated, setValidated] = useState(false);
+    const { cart, clear, totalPrec } = useContext(CartContext)
     const [datos, setDatos] = useState({
         name: '',
         email: '',
@@ -71,6 +69,23 @@ const Formulario = (props) => {
             ...datos,
             [event.target.name]: event.target.value
         })
+    }
+
+    const handleSubmit = (event) => {
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+        setValidated(true);
+    };
+
+    const TerminarCompra = () => {
+        if (validated) {
+            generarOrden(cart, totalPrec, datos);
+            props.onHide();
+            clear();
+        }
     }
 
     return (
@@ -88,13 +103,13 @@ const Formulario = (props) => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form>
+                    <Form noValidate validated={validated} onSubmit={handleSubmit}>
 
-                        <Form.Group controlId="formGridName" >
+                        <Form.Group controlId="validationCustom01" >
                             <Form.Label>Nombre y Apelido:</Form.Label>
                             <Form.Control
-                                required={true}
-                                type="name"
+                                required
+                                type="text"
                                 placeholder="Name"
                                 name='name'
                                 onChange={handleInputChange}
@@ -104,7 +119,8 @@ const Formulario = (props) => {
                         <Form.Group controlId="formGridEmail">
                             <Form.Label>Email</Form.Label>
                             <Form.Control
-                                required={true}
+                                required
+
                                 type="email"
                                 placeholder="Email"
                                 name="email"
@@ -115,7 +131,7 @@ const Formulario = (props) => {
                         <Form.Group controlId="formGridPhone">
                             <Form.Label>Teléfono: </Form.Label>
                             <Form.Control
-                                required={true}
+                                required
                                 type="phone"
                                 placeholder="Sin 0 (11) Sin 15 (12345678)"
                                 name="phone"
@@ -123,16 +139,15 @@ const Formulario = (props) => {
                             />
                         </Form.Group>
 
+                        <Button type="submit" variant="success" onClick={() => { TerminarCompra();/* generarOrden(cart, totalPrec, datos) ; props.onHide(); clear(); */ }}>Confirmar</Button>
+                        <Button variant="danger" onClick={props.onHide}>Cancelar</Button>
                     </Form>
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="success" onClick={() => { generarOrden(cart, totalPrec, datos); props.onHide(); }}>Confirmar</Button>
-                    <Button variant="danger" onClick={props.onHide}>Cancelar</Button>
-                </Modal.Footer>
+
             </Modal>
         </div>
     );
 }
 
+
 export default Formulario;
-/*  */

@@ -19,7 +19,10 @@ const Cart = () => {
         <div>
             {
                 !cart.length ?
-                    <h2> No hay items en el carrito <Link to='/'> Ir al Home</Link></h2>
+                    <div className="emptyCart">
+                        <h2> No quedaron items pendientes de compra </h2>
+                        <Link to='/'><Button> Volver al Inicio</Button></Link>
+                    </div>
                     : (<>
                         <Table striped bordered hover variant="dark">
                             <thead>

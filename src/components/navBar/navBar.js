@@ -10,7 +10,7 @@ const navBar = () => {
     return (
         <header className="header">
             <div className="logo">
-                <img src="#" alt="Logo" />
+                <Link to='/'><img src="https://www.pngjoy.com/pngl/206/4033835_horde-horde-symbol-png-download.png" width="70vw" alt="Logo" /></Link>
             </div>
             <div className="menu">
                 <ul>

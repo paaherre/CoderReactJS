@@ -1,0 +1,10 @@
+.emptyCart{
+    text-align: center;
+    margin-top: 5vh;
+}
+.emptyCart h2{
+    border: 2px solid black;
+}
+.emptyCart Link{
+    font-size: 16px;
+}
