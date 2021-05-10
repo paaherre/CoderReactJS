@@ -15,19 +15,19 @@ In this e-commerce you can:
 I hope you enjoy it!
 
 Dependencies:    
-    "animate.css": "^4.1.1",
-    "bootstrap": "^4.6.0",
-    "firebase": "^8.4.1",
-    "gh-pages": "^3.1.0",
-    "jquery": "^3.6.0",
-    "popper.js": "^1.16.1",
-    "prop-types": "^15.7.2",
-    "react": "^17.0.2",
-    "react-bootstrap": "^1.5.2",
-    "react-dom": "^17.0.2",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "^4.0.3",
-    "web-vitals": "^1.1.1"
+    animate.css: 4.1.1,
+    bootstrap: 4.6.0,
+    firebase: 8.4.1,
+    gh-pages: 3.1.0,
+    jquery: 3.6.0,
+    popper.js: 1.16.1,
+    prop-types: 15.7.2,
+    react: 17.0.2,
+    react-bootstrap: 1.5.2,
+    react-dom: 17.0.2,
+    react-router-dom": 5.2.0,
+    react-scripts": 4.0.3,
+    web-vitals": 1.1.1
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
